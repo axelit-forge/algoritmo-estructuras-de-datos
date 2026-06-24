@@ -76,8 +76,7 @@ public abstract class ArbolBinario implements operacionesArbolB {
 	}
 	
 	
-	public int alturaArbol(NodoArbolBinario nodo)
-	{
+	public int alturaArbol(NodoArbolBinario nodo) {
 	    int alturaIzq, alturaDer;
 
 	    if(nodo==null){
