@@ -258,4 +258,29 @@ public abstract class ArbolBusquedaBinario implements IArbol{
     public void parcial(Object N){
         this.root = sacarParcial (this.root, N);
     }
+
+    public void reconstruirDesdePreOrder(Object[] preOrder) {
+        int[] indice = {0};
+        this.root = construirPreAux(preOrder, indice, null, null);
+    }
+
+    private NodoABB construirPreAux(Object[] preOrder, int[] indice, Object min, Object max) {
+        if (indice[0] >= preOrder.length) {
+            return null;
+        }
+
+        Object valorActual = preOrder[indice[0]];
+
+        if ((min != null && menor(valorActual, min)) || (max != null && mayor(valorActual, max))) {
+            return null;
+        }
+
+        indice[0]++;
+        NodoABB nuevoNodo = new NodoABB(valorActual);
+
+        nuevoNodo.setLeft(construirPreAux(preOrder, indice, min, valorActual));
+        nuevoNodo.setRight(construirPreAux(preOrder, indice, valorActual, max));
+
+        return nuevoNodo;
+    }
 }
